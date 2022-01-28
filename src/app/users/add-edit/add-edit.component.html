@@ -1,60 +1,64 @@
-﻿<h1 *ngIf="isAddMode">Add User</h1>
-<h1 *ngIf="!isAddMode">Edit User</h1>
+﻿<h1 *ngIf="isAddMode">Agregar contacto</h1>
+<h1 *ngIf="!isAddMode">Editar contacto</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-    <div class="form-row">
-        <div class="form-group col-5">
-            <label>Primer Nombre</label>
-            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                <div *ngIf="f.firstName.errors.required">First Name is required</div>
-            </div>
-        </div>
-        <div class="form-group col-5">
-            <label>Segundo Nombre</label>
-            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-            </div>
-        </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-4">
-        <label>Teléfono</label>
-        <input type="text" formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
-        <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
-            <div *ngIf="f.telephone.errors.required">Telephone is required</div>
-        </div>
-      </div>
-      <div class="form-group col-7">
-          <label>Email</label>
-          <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">Email is required</div>
-            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-          </div>
+  <div class="form-row">
+    <div class="form-group col-4">
+      <label>Nombres</label>
+      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+        <div *ngIf="f.firstName.errors.required">El nombre es requerido</div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group col-4">
-          <label>Fecha de nacimiento</label>
-          <input type="date" formControlName="birthDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }" />
-          <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
-            <div *ngIf="f.birthDate.errors.required">BirthDate is required</div>
-          </div>
+    <div class="form-group col-4">
+      <label>Apellidos</label>
+      <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.errors.required">Al menos un apellido es requerido</div>
       </div>
-      <div class="form-group col-7">
-        <label>Dirección</label>
-        <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
-        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
-          <div *ngIf="f.address.errors.required">Address is required</div>
-        </div>
     </div>
+    <div *ngIf="age || f.age.value" class="col-2">
+      <label>Edad en años</label>
+      <input type="number" formControlName="age" class="form-control">
     </div>
-    <div class="form-group">
-        <button type="submit" [disabled]="loading" class="btn btn-primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Save
-        </button>
-        <a routerLink="/users" class="btn btn-link">Cancel</a>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-4">
+      <label>Teléfono</label>
+      <input type="text" formControlName="telephone" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }" />
+      <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+          <div *ngIf="f.telephone.errors.required">El teléfono es requerido</div>
+      </div>
     </div>
+    <div class="form-group col-7">
+      <label>Correo electrónico</label>
+      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">El correo electrónico es requerido</div>
+        <div *ngIf="f.email.errors.email">El correo electrónico debe ser una dirección válida</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-4">
+      <label>Fecha de nacimiento</label>
+      <input type="date" formControlName="birthDate" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }" (change)="ageCalculator()"/>
+      <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+        <div *ngIf="f.birthDate.errors.required">La fecha de nacimiento es requerida</div>
+      </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Dirección</label>
+      <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+      <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+        <div *ngIf="f.address.errors.required">La dirección es requerida</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      <span>Guardar</span> 
+    </button>
+    <a routerLink="/users" class="btn btn-link cancel"><span>Cancelar</span></a>
+  </div>
 </form>

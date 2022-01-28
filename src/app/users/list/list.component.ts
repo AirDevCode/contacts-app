@@ -6,22 +6,24 @@ import { User } from '@app/_models';
 
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
-    users!: User[];
 
-    constructor(private userService: UserService) {}
+  public users!: User[];
+  public searchText: string = '';
 
-    ngOnInit() {
-        this.userService.getAll()
-            .pipe(first())
-            .subscribe(users => this.users = users);
-    }
+  constructor(private userService: UserService) {}
 
-    deleteUser(id: string) {
-        const user = this.users.find(x => x.id === id);
-        if (!user) return;
-        user.isDeleting = true;
-        this.userService.delete(id)
-            .pipe(first())
-            .subscribe(() => this.users = this.users.filter(x => x.id !== id));
-    }
+  ngOnInit() {
+    this.userService.getAll()
+      .pipe(first())
+      .subscribe(users => this.users = users);
+  }
+
+  deleteUser(id: string) {
+    const user = this.users.find(x => x.id === id);
+    if (!user) return;
+    user.isDeleting = true;
+    this.userService.delete(id)
+      .pipe(first())
+      .subscribe(() => this.users = this.users.filter(x => x.id !== id));
+  }
 }

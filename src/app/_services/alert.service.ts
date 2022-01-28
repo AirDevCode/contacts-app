@@ -6,36 +6,36 @@ import { Alert, AlertType } from '@app/_models';
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
-    private subject = new Subject<Alert>();
-    private defaultId = 'default-alert';
+  private subject = new Subject<Alert>();
+  private defaultId = 'default-alert';
 
-    onAlert(id = this.defaultId): Observable<Alert> {
-        return this.subject.asObservable().pipe(filter(x => x && x.id === id));
-    }
+  onAlert(id = this.defaultId): Observable<Alert> {
+    return this.subject.asObservable().pipe(filter(x => x && x.id === id));
+  }
 
-    success(message: string, options?: Partial<Alert>) {
-        this.alert(message, AlertType.Success, options);
-    }
+  success(message: string, options?: Partial<Alert>) {
+    this.alert(message, AlertType.Success, options);
+  }
 
-    error(message: string, options?: Partial<Alert>) {
-        this.alert(message, AlertType.Error, options);
-    }
+  error(message: string, options?: Partial<Alert>) {
+    this.alert(message, AlertType.Error, options);
+  }
 
-    info(message: string, options?: Partial<Alert>) {
-        this.alert(message, AlertType.Info, options);
-    }
+  info(message: string, options?: Partial<Alert>) {
+    this.alert(message, AlertType.Info, options);
+  }
 
-    warn(message: string, options?: Partial<Alert>) {
-        this.alert(message, AlertType.Warning, options);
-    }
+  warn(message: string, options?: Partial<Alert>) {
+    this.alert(message, AlertType.Warning, options);
+  }
 
-    alert(message: string, type: AlertType, options: Partial<Alert> = {}) {
-        const id = options.id || this.defaultId;
-        const alert = new Alert(id, type, message, options.autoClose, options.keepAfterRouteChange);
-        this.subject.next(alert);
-    }
+  alert(message: string, type: AlertType, options: Partial<Alert> = {}) {
+    const id = options.id || this.defaultId;
+    const alert = new Alert(id, type, message, options.autoClose, options.keepAfterRouteChange);
+    this.subject.next(alert);
+  }
 
-    clear(id = this.defaultId) {
-        this.subject.next(new Alert(id));
-    }
+  clear(id = this.defaultId) {
+    this.subject.next(new Alert(id));
+  }
 }
