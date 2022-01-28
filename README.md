@@ -5,7 +5,7 @@
 Aplicación web tipo CRUD para administrar contactos realizada con angular 11 🛠️.  Permite crear, editar, eliminar y listar contactos a pedido del usuario.
 
 #### Uso en vivo online
-Enlace: https://github.com/AirDevCode/contacts-app
+Enlace: https://angular-ivy-hmqe6z.stackblitz.io
 
 •	Desde la página de inicio dar clic en administrar contactos.
 
