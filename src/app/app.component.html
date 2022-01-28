@@ -1,10 +1,13 @@
-﻿<nav class="navbar navbar-expand navbar-dark bg-dark">
+﻿<nav class="navbar navbar-expand navbar-light bg-primary">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+     [routerLinkActiveOptions]="{exact: true}">
+    <img src="assets/home.png" alt="home">
+    </a>
+    <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Contactos</a>
   </div>
 </nav>
-<div class="app-container bg-light">
+<div class="app-container">
   <alert></alert>
   <router-outlet></router-outlet>
 </div>

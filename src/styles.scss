@@ -1,0 +1,64 @@
+@import "./design-system/design-system.scss";
+
+*{
+  font-family: 'poppins';
+}
+
+a { 
+  cursor: pointer;
+}
+
+h1 {
+  color: var(--primary);
+}
+
+.app-container {
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.btn-delete-user {
+  width: 40px;
+  text-align: center;
+  box-sizing: content-box;
+}
+
+.navbar img {
+  width: 3rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 2rem;
+  }
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: var(--white);
+  font-size: var(--small);
+}
+
+.regular-button{
+  border: none;
+  border-radius: 1.5rem;
+  padding: .5rem;
+  margin-top: 1rem;
+  color: var(--white);
+  background-color: var(--light-orange);
+  font-weight: bold;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: var(--small);
+  }
+
+  :is(a, p, span, button, label, table, .navbar-light .navbar-nav .nav-link) {
+    font-size: var(--extra-small);
+  }
+}

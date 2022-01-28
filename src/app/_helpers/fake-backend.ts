@@ -53,7 +53,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = body;
 
       if (users.find(x => x.email === user.email)) {
-          return error(`User with the email ${user.email} already exists`);
+          return error(`El usuario con el correo electrónico ${user.email} ya existe`);
       }
 
       user.id = newUserId();
@@ -68,7 +68,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       let user = users.find(x => x.id === idFromUrl());
 
       if (params.email !== user.email && users.find(x => x.email === params.email)) {
-          return error(`User with the email ${params.email} already exists`);
+          return error(`El usuario con el correo electrónico ${params.email} ya existe`);
       }
 
       Object.assign(user, params);
@@ -85,12 +85,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     function ok(body?: any) {
       return of(new HttpResponse({ status: 200, body }))
-          .pipe(delay(500));
+        .pipe(delay(500));
     }
 
     function error(message: any) {
       return throwError({ error: { message } })
-          .pipe(materialize(), delay(500), dematerialize()); 
+        .pipe(materialize(), delay(500), dematerialize()); 
     }
 
     function basicDetails(user: any) {

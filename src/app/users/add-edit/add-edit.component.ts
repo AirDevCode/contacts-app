@@ -18,6 +18,7 @@ export class AddEditComponent implements OnInit {
   public loading = false;
   public submitted = false;
   public age: number = 0;
+  public disable: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,7 +38,7 @@ export class AddEditComponent implements OnInit {
       telephone: ['', Validators.required],
       address: ['', Validators.required],
       birthDate: ['', Validators.required],
-      age: [{value:'', disabled: true}, Validators.required],
+      age: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]]
     });
 
@@ -81,7 +82,7 @@ export class AddEditComponent implements OnInit {
     this.userService.create(this.form.value)
       .pipe(first())
       .subscribe(() => {
-          this.alertService.success('User added', { keepAfterRouteChange: true });
+          this.alertService.success('Contacto agregado', { keepAfterRouteChange: true });
           this.router.navigate(['../'], { relativeTo: this.route });
       })
       .add(() => this.loading = false);
@@ -91,7 +92,7 @@ export class AddEditComponent implements OnInit {
     this.userService.update(this.id, this.form.value)
       .pipe(first())
       .subscribe(() => {
-        this.alertService.success('User updated', { keepAfterRouteChange: true });
+        this.alertService.success('Contacto actualizado', { keepAfterRouteChange: true });
         this.router.navigate(['../../'], { relativeTo: this.route });
       })
       .add(() => this.loading = false);

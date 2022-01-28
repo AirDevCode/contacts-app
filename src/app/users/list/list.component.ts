@@ -4,7 +4,12 @@ import { first } from 'rxjs/operators';
 import { UserService } from '@app/_services';
 import { User } from '@app/_models';
 
-@Component({ templateUrl: 'list.component.html' })
+@Component({ 
+  selector: 'app-list',
+  templateUrl: 'list.component.html',
+  styleUrls: ['./list.component.scss'] 
+})
+
 export class ListComponent implements OnInit {
 
   public users!: User[];

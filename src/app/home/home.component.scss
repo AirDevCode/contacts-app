@@ -1,0 +1,39 @@
+.container {
+  margin-top: 2rem;
+
+  @media (min-width: 1024px) {
+    margin-top: 4rem;
+  }
+
+  & h1 {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: var(--big);
+      text-align: left;
+      line-height: 50pt;
+    }
+
+  }
+
+  & p {
+    text-align: justify;
+    margin-top: 2rem;
+  }
+
+  & img{
+    width: 90%;
+    margin-top: 1rem;
+    margin-left: 1rem;
+
+    @media (min-width: 1024px) {
+      width: 85%;
+    }
+  }
+}
